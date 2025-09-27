@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Earn-Online</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg1:#060013; --bg2:#120023;
+    --neon1:#ff2fc1; --neon2:#8a2be2; --neon3:#00f0ff;
+    --card-radius:14px;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:Inter,system-ui,Segoe UI,Roboto,Arial;
+    background:
+      radial-gradient(600px 300px at 10% 10%, rgba(138,43,226,0.08), transparent 10%),
+      linear-gradient(180deg,var(--bg1),var(--bg2));
+    color:#e9e6ff;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+  }
+
+  header{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 24px; gap:12px;
+    border-bottom:1px solid rgba(255,255,255,0.03);
+    background: linear-gradient(90deg, rgba(255,47,193,0.06), rgba(138,43,226,0.04));
+    position:sticky; top:0; z-index:60;
+  }
+  .brand{ display:flex; gap:12px; align-items:center; }
+  .brand .logo{ width:44px;height:44px;border-radius:10px;
+    background:linear-gradient(135deg,var(--neon2),var(--neon1));
+    display:flex;align-items:center;justify-content:center;font-weight:800;color:white; box-shadow:0 6px 24px rgba(138,43,226,0.12);
+  }
+  .brand .title{ font-weight:800; font-size:1rem; }
+  .top-note{ color:#cfc3ff; font-weight:600; font-size:0.9rem; opacity:0.95; }
+
+  .hero{ text-align:center; padding:42px 24px 10px; }
+  .hero h1{ margin:0; font-size:2.1rem; text-shadow:0 0 18px rgba(255,47,193,0.08); }
+  .hero p{ margin:12px auto 0; color:#d9d2ff; max-width:900px; opacity:0.95; }
+
+  .wrap{ max-width:1200px; margin:26px auto; padding:0 18px 80px; }
+  .grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap:18px; }
+
+  .card{
+    border-radius:var(--card-radius);
+    padding:16px;
+    display:flex; flex-direction:column; align-items:center;
+    min-height:300px;
+    position:relative; overflow:hidden;
+    background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border:1px solid rgba(255,255,255,0.03);
+    box-shadow: 0 12px 40px rgba(1,1,10,0.45);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .card:hover{ transform: translateY(-10px); box-shadow:0 24px 60px rgba(2,1,8,0.7); }
+  .logo{ width:76px; height:76px; border-radius:12px; background:rgba(255,255,255,0.03); display:flex; align-items:center; justify-content:center; margin-bottom:12px; object-fit:contain; }
+  .name{ font-weight:800; font-size:1.05rem; margin-bottom:8px; color:#fff; text-shadow:0 0 10px rgba(138,43,226,0.06); }
+  .rating{ background:linear-gradient(90deg,#000000,#ffb347); color:#0d24f8; font-weight:800; padding:6px 10px; border-radius:999px; margin-bottom:10px; }
+  .desc{ text-align:center; color:#e7e0ff; opacity:0.95; margin-bottom:12px; font-size:0.92rem; min-height:44px; }
+  .btn{
+    margin-top:auto; width:100%; max-width:220px;
+    padding:11px 14px; border-radius:10px; border:1px solid rgba(255,255,255,0.04);
+    background: linear-gradient(90deg, rgba(255,47,193,0.12), rgba(138,43,226,0.12));
+    color:#fff; font-weight:800; cursor:pointer; box-shadow:0 6px 20px rgba(138,43,226,0.08);
+    transition: transform .14s ease, box-shadow .14s ease;
+  }
+  .btn:hover{ transform:translateY(-4px); box-shadow:0 12px 40px rgba(217,38,255,0.16), 0 0 36px rgba(0,240,255,0.04); }
+
+  /* accent variations for visual pop */
+  /* .accent-freecash{ background: linear-gradient(135deg,#00f0d0,#3b82f6); color:#041018; }
+  .accent-swag{ background: linear-gradient(135deg,#ffb3e6,#b450ff); }
+  .accent-idle{ background: linear-gradient(135deg,#7afcff,#79ffb2); color:#041012; }
+  .accent-cointiply{ background: linear-gradient(135deg,#ffd166,#ff9770); color:#111; } */
+
+  /* overlay popup */
+  .overlay{ position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background: linear-gradient(180deg, rgba(2,2,6,0.86), rgba(2,2,6,0.96)); z-index:9999; padding:18px; }
+  .modal{ width:100%; max-width:720px; background: linear-gradient(180deg, rgba(14,7,30,0.98), rgba(6,2,18,0.92)); border-radius:14px; padding:26px; color:#fff; box-shadow:0 30px 80px rgba(0,0,0,0.6); border:1px solid rgba(255,255,255,0.03); text-align:center; }
+  .modal h2{ margin:0 0 10px; font-size:1.4rem; }
+  .modal p{ margin:0 0 18px; color:#cfc6ff; }
+  .device-grid{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+  .device{ min-width:160px; max-width:220px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:12px; border-radius:10px; cursor:pointer; border:1px solid rgba(255,255,255,0.03); font-weight:800; display:flex; gap:10px; align-items:center; justify-content:center; }
+  .device img{ width:36px; height:36px; }
+
+  @media(max-width:720px){
+    .hero h1{ font-size:1.6rem; }
+    .logo{ width:64px; height:64px; }
+    .card{ min-height:240px; padding:12px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="logo">EO</div>
+    <div>
+      <div class="title">Earn-Online</div>
+      <div style="font-size:12px;color:#cfc3ff;margin-top:4px;">Top Earning & Reward Sites</div>
+    </div>
+  </div>
+  <div class="top-note"><button  class="btn" onclick="openAdsThenMain(this)">Join Now</button></div>
+</header>
+
+<section class="hero">
+  <h1 class="py-60">Top Paying Earning & Reward Platforms</h1>
+</section>
+
+<!-- POPUP overlay (visible on load unless sessionStorage set) -->
+<div class="overlay" id="deviceOverlay" role="dialog" aria-modal="true">
+  <div class="modal">
+    <h2>Choose Your Device</h2>
+    <p>Select a device to continue</p>
+    <div class="device-grid">
+      <div class="device" onclick="selectDevice('android')">
+        <img src="https://img.icons8.com/color/48/android-os.png" alt="android"> Android
+      </div>
+      <div class="device" onclick="selectDevice('windows')">
+        <img src="https://img.icons8.com/color/48/windows-10.png" alt="windows"> Windows
+      </div>
+      <div class="device" onclick="selectDevice('apple')">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/mac-os.png" alt="apple"> Apple
+      </div>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <section class="grid" id="cards">
+    <!-- list of many cards -->
+    <article class="card accent-freecash" data-rating="5.0" data-main="https://freecash.com">
+      <img class="logo" src="https://freecash.com/favicon.ico" alt="Freecash" onerror="imgFallback(this)">
+      <div class="name">Freecash</div><div class="rating">⭐ 5.0</div>
+      <div class="desc">Surveys, offers & games — instant payouts to PayPal / Crypto.</div>
+      <button class="btn" onclick="openAdsThenMain(this)">Show Offer</button>
+    </article>
+
+    <article class="card accent-swag" data-rating="4.9" data-main="https://swagbucks.com">
+      <img class="logo" src="https://swagbucks.com/favicon.ico" alt="Swagbucks" onerror="imgFallback(this)">
+      <div class="name">Swagbucks</div><div class="rating">⭐ 4.9</div>
+      <div class="desc">Surveys, videos & shopping rewards — redeem for PayPal/gift cards.</div>
+      <button class="btn" onclick="openAdsThenMain(this)">Show Offer</button>
+    </article>
+
+    <article class="card accent-idle" data-rating="4.8" data-main="https://idle-empire.com">
+      <img class="logo" src="https://idle-empire.com/favicon.ico" alt="Idle-Empire" onerror="imgFallback(this)">
+      <div class="name">Idle-Empire</div><div class="rating">⭐ 4.8</div>
+      <div class="desc">Play games & complete tasks — withdraw via crypto & PayPal.</div>
+      <button class="btn" onclick="openAdsThenMain(this)">Show Offer</button>
+    </article>
+
+    <article class="card accent-cointiply" data-rating="4.7" data-main="https://cointiply.com">
+      <img class="logo" src="https://cointiply.com/favicon.ico" alt="Cointiply" onerror="imgFallback(this)">
+      <div class="name">Cointiply</div><div class="rating">⭐ 4.7</div>
+      <div class="desc">Crypto GPT — faucets, offers & tasks paid in BTC/DOGE.</div>
+      <button class="btn" onclick="openAdsThenMain(this)">Show Offer</button>
+    </article>
+
+    <article class="card" data-rating="4.6" data-main="https://prizerebel.com">
+      <img class="logo" src="https://prizerebel.com/favicon.ico" alt="PrizeRebel" onerror="imgFallback(this)">
+      <div class="name">PrizeRebel</div><div class="rating">⭐ 4.6</div>
+      <div class="desc">Surveys & offers with quick gift card redemptions.</div>
+      <button class="btn" onclick="openAdsThenMain(this)">Show Offer</button>
+    </article>
+
+    <article class="card" data-rating="4.6" data-main="https://featurepoints.com">
+      <img class="logo" src="https://featurepoints.com/favicon.ico" alt="FeaturePoints" onerror="imgFallback(this)">
+      <div class="name">FeaturePoints</div><div class="rating">⭐ 4.6</div>
+      <div class="desc">Install apps, complete tasks, redeem for PayPal/gift cards.</div>
+      <button class="btn" onclick="openAdsThenMain(this)">Show Offer</button>
+    </article>
+
+    <article class="card" data-rating="4.5" data-main="https://surveytime.io">
+      <img class="logo" src="https://surveytime.io/favicon.ico" alt="SurveyTime" onerror="imgFallback(this)">
+      <div class="name">SurveyTime</div><div class="rating">⭐ 4.5</div>
+      <div class="desc">Instant PayPal reward per completed survey.</div>
+      <button class="btn" onclick="openAdsThenMain(this)">Show Offer</button>
+    </article>
+
+    <article class="card" data-rating="4.5" data-main="https://gg2u.org">
+      <img class="logo" src="https://gg2u.org/favicon.ico" alt="GG2U" onerror="imgFallback(this)">
+      <div class="name">GG2U</div><div class="rating">⭐ 4.5</div>
+      <div class="desc">Offers, videos & game rewards for quick earning.</div>
+      <button class="btn" onclick="openAdsThenMain(this)">Show Offer</button>
+    </article>
+
+    <article class="card" data-rating="4.4" data-main="https://mistplay.com">
+      <img class="logo" src="https://mistplay.com/favicon.ico" alt="Mistplay" onerror="imgFallback(this)">
+      <div class="name">Mistplay</div><div class="rating">⭐ 4.4</div>
+      <div class="desc">Play Android games and earn gift cards.</div>
+      <button class="btn" onclick="openAdsThenMain(this)">Show Offer</button>
+    </article>
+
+    <article class="card" data-rating="4.3" data-main="https://inboxdollars.com">
+      <img class="logo" src="https://inboxdollars.com/favicon.ico" alt="InboxDollars" onerror="imgFallback(this)">
+      <div class="name">InboxDollars</div><div class="rating">⭐ 4.3</div>
+      <div class="desc">Surveys, videos & cashback rewards.</div>
+      <button class="btn" onclick="openAdsThenMain(this)">Show Offer</button>
+    </article>
+
+    <article class="card" data-rating="4.2" data-main="https://lifepointspanel.com">
+      <img class="logo" src="https://lifepointspanel.com/favicon.ico" alt="LifePoints" onerror="imgFallback(this)">
+      <div class="name">LifePoints</div><div class="rating">⭐ 4.2</div>
+      <div class="desc">Global panel for surveys & small payouts.</div>
+      <button class="btn" onclick="openAdsThenMain(this)">Show Offer</button>
+    </article>
+
+    <article class="card" data-rating="4.2" data-main="https://ysense.com">
+      <img class="logo" src="https://ysense.com/favicon.ico" alt="ySense" onerror="imgFallback(this)">
+      <div class="name">ySense</div><div class="rating">⭐ 4.2</div>
+      <div class="desc">Surveys, microtasks & payout options worldwide.</div>
+      <button class="btn" onclick="openAdsThenMain(this)">Show Offer</button>
+    </article>
+
+    <article class="card" data-rating="4.1" data-main="https://toluna.com">
+      <img class="logo" src="https://toluna.com/favicon.ico" alt="Toluna" onerror="imgFallback(this)">
+      <div class="name">Toluna</div><div class="rating">⭐ 4.1</div>
+      <div class="desc">Community-driven surveys & rewards.</div>
+      <button class="btn" onclick="openAdsThenMain(this)">Show Offer</button>
+    </article>
+
+    <article class="card" data-rating="4.0" data-main="https://inboxpounds.co.uk">
+      <img class="logo" src="https://inboxpounds.co.uk/favicon.ico" alt="InboxPounds" onerror="imgFallback(this)">
+      <div class="name">InboxPounds</div><div class="rating">⭐ 4.0</div>
+      <div class="desc">UK surveys & cashback rewards.</div>
+      <button class="btn" onclick="openAdsThenMain(this)">Show Offer</button>
+    </article>
+
+    <!-- more from earlier list -->
+    <article class="card" data-rating="4.7" data-main="https://surveyjunkie.com">
+      <img class="logo" src="https://surveyjunkie.com/favicon.ico" alt="Survey Junkie" onerror="imgFallback(this)">
+      <div class="name">Survey Junkie</div><div class="rating">⭐ 4.7</div>
+      <div class="desc">Trusted survey site — redeem cash/gift cards.</div>
+      <button class="btn" onclick="openAdsThenMain(this)">Show Offer</button>
+    </article>
+
+    <article class="card" data-rating="4.5" data-main="https://rewardingways.com">
+      <img class="logo" src="https://rewardingways.com/favicon.ico" alt="RewardingWays" onerror="imgFallback(this)">
+      <div class="name">RewardingWays</div><div class="rating">⭐ 4.5</div>
+      <div class="desc">Surveys & tasks with regular payouts.</div>
+      <button class="btn" onclick="openAdsThenMain(this)">Show Offer</button>
+    </article>
+
+    <article class="card" data-rating="4.4" data-main="https://scrambly.io">
+      <img class="logo" src="https://scrambly.io/favicon.ico" alt="Scrambly" onerror="imgFallback(this)">
+      <div class="name">Scrambly</div><div class="rating">⭐ 4.4</div>
+      <div class="desc">Micro tasks & quick rewards.</div>
+      <button class="btn" onclick="openAdsThenMain(this)">Show Offer</button>
+    </article>
+
+    <article class="card" data-rating="4.6" data-main="https://5surveys.com">
+      <img class="logo" src="https://5surveys.com/favicon.ico" alt="FiveSurveys" onerror="imgFallback(this)">
+      <div class="name">FiveSurveys</div><div class="rating">⭐ 4.6</div>
+      <div class="desc">Short surveys for daily small payouts.</div>
+      <button class="btn" onclick="openAdsThenMain(this)">Show Offer</button>
+    </article>
+
+    <article class="card" data-rating="4.5" data-main="https://primeopinion.com">
+      <img class="logo" src="https://primeopinion.com/favicon.ico" alt="Prime Opinion" onerror="imgFallback(this)">
+      <div class="name">Prime Opinion</div><div class="rating">⭐ 4.5</div>
+      <div class="desc">Quick surveys & steady reward flow.</div>
+      <button class="btn" onclick="openAdsThenMain(this)">Show Offer</button>
+    </article>
+
+    <article class="card" data-rating="4.5" data-main="https://heycash.io">
+      <img class="logo" src="https://heycash.io/favicon.ico" alt="HeyCash" onerror="imgFallback(this)">
+      <div class="name">HeyCash</div><div class="rating">⭐ 4.5</div>
+      <div class="desc">App-based earning — surveys & tasks.</div>
+      <button class="btn" onclick="openAdsThenMain(this)">Show Offer</button>
+    </article>
+
+    <article class="card" data-rating="4.4" data-main="https://cashkarma.io">
+      <img class="logo" src="https://cashkarma.io/favicon.ico" alt="CashKarma" onerror="imgFallback(this)">
+      <div class="name">CashKarma</div><div class="rating">⭐ 4.4</div>
+      <div class="desc">Offers & surveys, redeem for PayPal/gift cards.</div>
+      <button class="btn" onclick="openAdsThenMain(this)">Show Offer</button>
+    </article>
+
+    <article class="card" data-rating="4.5" data-main="https://buff.game">
+      <img class="logo" src="https://buff.game/favicon.ico" alt="BUFF" onerror="imgFallback(this)">
+      <div class="name">BUFF Game</div><div class="rating">⭐ 4.5</div>
+      <div class="desc">Gamer loyalty app — earn while playing games.</div>
+      <button class="btn" onclick="openAdsThenMain(this)">Show Offer</button>
+    </article>
+
+    <article class="card" data-rating="4.4" data-main="https://current.com">
+      <img class="logo" src="https://current.com/favicon.ico" alt="Mode" onerror="imgFallback(this)">
+      <div class="name">Mode (Earn App)</div><div class="rating">⭐ 4.4</div>
+      <div class="desc">Earn listening, surveys & tasks — withdraw daily.</div>
+      <button class="btn" onclick="openAdsThenMain(this)">Show Offer</button>
+    </article>
+
+    <article class="card" data-rating="4.3" data-main="https://play.google.com/store/apps/details?id=com.cashgiraffe.app">
+      <img class="logo" src="https://play.google.com/favicon.ico" alt="CashGiraffe" onerror="imgFallback(this)">
+      <div class="name">Cash Giraffe</div><div class="rating">⭐ 4.3</div>
+      <div class="desc">Play games, earn points & redeem for PayPal.</div>
+      <button class="btn" onclick="openAdsThenMain(this)">Show Offer</button>
+    </article>
+
+  </section>
+</main>
+
+<script>
+  // ---------------------
+  // Put your real ad URLs here
+  // ---------------------
+  const adsLinks = [
+    "https://otieu.com/4/9933628", // REPLACE with first ad URL
+    "https://silkyspite.com/hjRen7"  // REPLACE with second ad URL
+  ];
+
+  // show pop-up on load unless session has deviceChosen
+  document.addEventListener('DOMContentLoaded', ()=> {
+    const overlay = document.getElementById('deviceOverlay');
+    if(sessionStorage.getItem('deviceChosen')){
+      overlay.style.display = 'none';
+      sortCardsByRating();
+    } else {
+      overlay.style.display = 'flex';
+    }
+  });
+
+  // Device selection: open 2 ads, then hide overlay and sort cards
+  function selectDevice(device){
+    // attempt to open ads (user-initiated click)
+    try{
+      window.open(adsLinks[0], '_blank');
+      setTimeout(()=> window.open(adsLinks[1], '_blank'), 700);
+    }catch(e){ console.warn('ad open blocked', e); }
+    // hide overlay after short delay and sort
+    setTimeout(()=> {
+      document.getElementById('deviceOverlay').style.display = 'none';
+      sessionStorage.setItem('deviceChosen', device);
+      sortCardsByRating();
+      document.getElementById('cards').scrollIntoView({behavior:'smooth'});
+    }, 1200);
+  }
+
+  // When clicking a card's button: open 2 ads then main site from data-main
+  function openAdsThenMain(button){
+    const card = button.closest('.card');
+    const main = card.getAttribute('data-main');
+    try{
+      // open ads tabs (user click origin)
+      window.open(adsLinks[0], '_blank');
+      setTimeout(()=> window.open(adsLinks[1], '_blank'), 700);
+      // open main after ads (delay)
+      setTimeout(()=> {
+        // open main in new tab:
+        window.open(main, '_blank');
+      }, 1300);
+    }catch(e){
+      console.warn('popup blocked or invalid URL', e);
+      // fallback: open main directly
+      window.open(main, '_blank');
+    }
+  }
+
+  // sort by data-rating desc
+  function sortCardsByRating(){
+    const container = document.getElementById('cards');
+    const cards = Array.from(container.querySelectorAll('.card'));
+    cards.sort((a,b) => parseFloat(b.dataset.rating) - parseFloat(a.dataset.rating));
+    cards.forEach(c => container.appendChild(c));
+  }
+
+  // image fallback (favicon might not exist)
+  function imgFallback(img){
+    img.onerror = null;
+    const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120"><rect rx="14" width="100%" height="100%" fill="#2b0b33"/><text x="50%" y="52%" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="36" fill="#e6d7ff">N</text></svg>';
+    img.src = 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+  }
+
+  // allow Esc to dismiss overlay optionally and still sort (user friendly)
+  window.addEventListener('keydown', (e)=> {
+    if(e.key==='Escape'){
+      document.getElementById('deviceOverlay').style.display = 'none';
+      sessionStorage.setItem('deviceChosen','skipped');
+      sortCardsByRating();
+    }
+  });
+
+</script>
+</body>
+</html>

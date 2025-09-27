@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="night">
+<head>
+  <meta charset="UTF-8">
+  <title>Neon-Themed Landing Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <style>
+    /* Custom Neon Gradient for Buttons and Accents */
+    .neon-gradient {
+      background: linear-gradient(90deg, #a855f7, #ec4899); /* Purple to Pink Gradient */
+      transition: all 0.3s ease;
+    }
+    .neon-gradient:hover {
+      background: linear-gradient(90deg, #c084fc, #f472b6); /* Slightly lighter on hover */
+      box-shadow: 0 0 15px #a855f7; /* Add a neon glow */
+    }
+
+    /* Custom Background Effect (Optional: For a circuit board feel) */
+    .hero-bg {
+      background-color: #1a1a2e; /* Deep purple/black */
+      background-image: radial-gradient(circle, #2c0f4f 1px, transparent 1px), radial-gradient(circle, #2c0f4f 1px, transparent 1px);
+      background-size: 40px 40px;
+      background-position: 0 0, 20px 20px;
+    }
+
+    /* Override DaisyUI Hero Overlay for better contrast */
+    .hero-overlay-custom {
+      background-color: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(2px);
+    }
+  </style>
+
+</head>
+<body class="bg-[#0f001f]">
+
+<header class="p-4 px-8 border-b border-purple-800 bg-base-100/30 backdrop-blur-sm">
+  <div class="flex justify-between items-center max-w-7xl mx-auto">
+    
+    <div class="logo w-50">
+      <img class="w-20 sm:w-28 filter drop-shadow-lg shadow-purple-500" src="assests/Earn.png" alt="Logo">
+    </div>
+    
+    <div>
+      <a href="https://t.me/earnonlinejourney" 
+         class="neon-gradient text-white font-bold py-2 px-5 rounded-md shadow-lg shadow-purple-500/50 hover:shadow-pink-500/70 inline-block">
+        Join Now
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="hero min-h-[70vh] hero-bg border-b border-purple-800">
+  <div 
+    class="hero min-h-screen w-full"
+    style="background-image: url(/assests/Tg-\ \(1\).png); background-size: cover; background-position: center;"
+  >
+ 
+    
+    <div class="hero-content text-neutral-content text-center z-10">
+      <div class="max-w-xl">
+        <h1 class="mb-5 text-4xl sm:text-6xl font-extrabold text-white leading-tight">
+        </h1>
+        <button onclick="redirectUser()" class="neon-gradient btn border-none  text-white hover:scale-105 transform transition duration-300 shadow-xl">
+          <a class="px-6 py-2">
+            TOP PAYOUTS SITES LIST
+          </a>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="text-center py-16 px-4 bg-[#0f001f]">
+  <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-white">
+    🔥 2025 এর Top Earning Sites আবিষ্কার করুন
+  </h2>
+  <p class="text-lg sm:text-xl mb-8 text-gray-400">
+    Trusted reviews & signup bonus links একসাথে!
+  </p>
+  
+  <button onclick="notredirectUser()" class="neon-gradient btn border-none text-white hover:scale-105 transform transition duration-300 shadow-xl">
+    <span class="px-6 py-2 flex items-center gap-2">
+      🚀 See The Top Sites Now
+    </span>
+  </button>
+</div>
+<section class="py-20 px-4 bg-[#0f001f]">
+    <div class="max-w-7xl mx-auto">
+        
+        <h2 class="text-4xl font-extrabold text-center mb-16 text-white">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+                Our Top Categories
+            </span>
+        </h2>
+
+        <div onclick="redirectWithAds()" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            
+            <div onclick="redirectWithAds()" class="p-6 rounded-xl shadow-2xl transition-transform transform hover:scale-[1.03] duration-300" 
+                 style="background: #311b92;"> 
+                
+                <div class="h-40 flex items-center justify-center mb-4">
+                    <p class="text-5xl text-white opacity-75">✅</p>
+                </div>
+                
+                <h3 class="text-2xl font-bold mb-4 text-white">100% Legit Sites</h3>
+                <p class="text-gray-200 mb-8 text-sm">
+                    Verified and trusted platforms, ensuring you invest your time in genuine earning opportunities.
+                </p>
+                
+                <button class="w-full neon-gradient btn border-none text-white hover:scale-[1.02] transform transition duration-300 shadow-xl">
+                    <a  class="px-4 py-2 block">
+                        View Trusted Sites
+                    </a>
+                </button>
+            </div>
+
+            <div onclick="redirectWithAds()" class="p-6 rounded-xl shadow-2xl transition-transform transform hover:scale-[1.03] duration-300" 
+                 style="background: #004d40;"> 
+                
+                <div class="h-40 flex items-center justify-center mb-4">
+                    <p class="text-5xl text-white opacity-75">🏆</p>
+                </div>
+                
+                <h3 class="text-2xl font-bold mb-4 text-white">Best of 2025</h3>
+                <p class="text-gray-200 mb-8 text-sm">
+                    The highest-rated and most profitable sites forecasted for the year 2025. Stay ahead of the curve!
+                </p>
+                
+                <button class="w-full neon-gradient btn border-none text-white hover:scale-[1.02] transform transition duration-300 shadow-xl">
+                    <a href="#" class="px-4 py-2 block">
+                        See Top Ranking
+                    </a>
+                </button>
+            </div>
+
+            <div onclick="notredirectUser()" class="p-6 rounded-xl shadow-2xl transition-transform transform hover:scale-[1.03] duration-300" 
+                 style="background: #795548;"> 
+                
+                <div onclick="redirectUser()" class="h-40 flex items-center justify-center mb-4">
+                    <p class="text-5xl text-white opacity-75">⚡</p>
+                </div>
+                
+                <h3 class="text-2xl font-bold mb-4 text-white">Instant Payment Sites</h3>
+                <p class="text-gray-200 mb-8 text-sm">
+                    Don't wait! Sites that process your earnings immediately so you can enjoy your profits fast.
+                </p>
+                
+                <button class="w-full neon-gradient btn border-none text-white hover:scale-[1.02] transform transition duration-300 shadow-xl">
+                    <a href="#" class="px-4 py-2 block">
+                        Get Paid Now
+                    </a>
+                </button>
+            </div>
+
+
+            <div onclick="notredirectUser()" class="p-6 rounded-xl shadow-2xl transition-transform transform hover:scale-[1.03] duration-300" 
+                 style="background: #4a148c;">
+                
+                <div class="h-40 flex items-center justify-center mb-4">
+                    <p class="text-5xl text-white opacity-75">🕵️</p> 
+                </div>
+                
+                <h3 class="text-2xl font-bold mb-4 text-white">Secret Sites</h3>
+                <p class="text-gray-200 mb-8 text-sm">
+                    Only the hidden gems that are paying high, often overlooked by the crowd. Get exclusive access!
+                </p>
+                
+                <button class="w-full neon-gradient btn border-none text-white hover:scale-[1.02] transform transition duration-300 shadow-xl">
+                    <a href="#" class="px-4 py-2 block">
+                        Explore Hidden List
+                    </a>
+                </button>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script src="/assests/script.js"></script>
+
+</body>
+</html>
