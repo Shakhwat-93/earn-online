@@ -82,8 +82,8 @@ function notredirectUser() {
 
     // Ads links
   const adsLinks = [
-    "https://otieu.com/4/9933975",
-    "https://otieu.com/4/9933628"
+    "https://otieu.com/4/9943479",
+    "https://otieu.com/4/9943477"
   ];
 
   function redirectWithAds(){
