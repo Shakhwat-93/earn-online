@@ -11,7 +11,7 @@ function secretsite() {
         window.location.href = "https://silkyspite.com/3rPZpv";  
       } else {
         // নাহলে main site এ পাঠাও
-        window.location.href = "assests/secret-sites.html";  
+        window.location.href = "secret-sites.html";  
       }
     }
 
