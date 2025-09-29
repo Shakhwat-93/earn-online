@@ -1,4 +1,4 @@
-function secretsites() {
+function secretsite() {
       const lastClick = localStorage.getItem("lastClickTime");
       const now = Date.now();
 
