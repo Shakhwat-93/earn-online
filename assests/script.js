@@ -8,7 +8,7 @@ function secretsite() {
       if (!lastClick || now - lastClick > fiveMinutes) {
         // যদি প্রথমবার হয় বা 5 মিনিটের বেশি হয়ে যায় → ad দেখাও
         localStorage.setItem("lastClickTime", now);
-        window.location.href = "https://silkyspite.com/3rPZpv";  
+        window.location.href = "https://nx2bs.com/csl?sid=1&aid=26373";  
       } else {
         // নাহলে main site এ পাঠাও
         window.location.href = "secret-sites.html";  
@@ -27,7 +27,7 @@ function notredirectUser() {
       if (!lastClick || now - lastClick > fiveMinutes) {
         // যদি প্রথমবার হয় বা 5 মিনিটের বেশি হয়ে যায় → ad দেখাও
         localStorage.setItem("lastClickTime", now);
-        window.location.href = "https://silkyspite.com/3rPZpv";  
+        window.location.href = "https://nx2bs.com/csl?sid=1&aid=26373";  
       } else {
         // নাহলে main site এ পাঠাও
         window.location.href = "sites.html";  
