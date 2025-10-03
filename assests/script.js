@@ -97,7 +97,7 @@ function notredirectUser() {
 
     // Ads links
   const adsLinks = [
-    "https://otieu.com/4/9943479",
+    "https://nx2bs.com/csl?sid=1&aid=26373",
     "https://otieu.com/4/9943477"
   ];
 
